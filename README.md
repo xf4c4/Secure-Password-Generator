@@ -1,4 +1,4 @@
-Secure Password Generator
+Secure Password Generator 1.1.0
 -------------------------
 
 A simple secure password generator with posibilities to choose a custom password 
