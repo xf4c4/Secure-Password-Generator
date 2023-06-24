@@ -17,12 +17,27 @@ def Is_Symbols(symbols):
     random_Number = random.randint(0,7)
     symbol = symbols[random_Number]
     return symbol
+def save(name,password):
+    try:
+        with open("C:\\users\\" + os.getlogin() + "\\Desktop\\"+"pass.txt","a") as save:
+            save.write("{}: {}\n".format(name,password))      
+    except FileNotFoundError:
+        print("""ERROR: File not found\nThe file must be in route C:/Users/[YourUserName]/Desktop""")
+    else:
+        print("Save Sucessfully")
+    
+    if(input("¿Quiere ver su contraseña?[y/n]: ") == "y"):
+        print("=> {}".format(password))
+    else:
+        pass
+
 def Custom_Passwords():
     have_UpperCase = input("¿Lleva mayusculas?[y/n]: ")
     have_LowerCase = input("¿Lleva minusculas?[y/n]: ")
     have_Nums = input("¿Lleva numeros?[y/n]: ")
     have_Symbols = input("¿Lleva simbolos?[y/n]: ")
-    lenght = int(input("Dime cuantos caracteres quieres que contenga tu contraseña en numero: "))
+    lenght = int(input("Cuantos caracteres quieres que contenga tu contraseña en numero: "))
+    name = input("Dime el nombre para guardar la contraseña: ")
 
     if have_UpperCase == "n" and have_LowerCase == "n" and have_Nums == "n" and have_Symbols == "n":
         print("""    
@@ -37,18 +52,21 @@ def Custom_Passwords():
                   |     /""")
     elif have_UpperCase == "y" and have_LowerCase == "n" and have_Nums == "n" and have_Symbols == "n":
         for x in range(lenght):
-            print(Is_UpperCase(upperCase), end="")
-
+            password = password + Is_UpperCase(upperCase)
+        save(name,password)
     elif have_UpperCase == "y" and have_LowerCase == "y" and have_Nums == "n" and have_Symbols == "n":
+        password = ''
         for x in range(lenght):
             random_Functions = {
                 1: Is_UpperCase(upperCase),
                 2: Is_LowerCase(lowerCase)
             }
             ramdom_Number = random.randint(1, 2)
-            caracter = random_Functions[ramdom_Number]
-            print(caracter, end="")
+            password = password + str(random_Functions[ramdom_Number])
+        save(name,password)
+
     elif have_UpperCase == "y" and have_LowerCase == "y" and have_Nums == "y" and have_Symbols == "n":
+        password = ''
         for x in range(lenght):
             random_Functions = {
                 1: Is_Nums(nums),
@@ -56,9 +74,10 @@ def Custom_Passwords():
                 3: Is_LowerCase(lowerCase)
             }
             ramdom_Number = random.randint(1, 3)
-            caracter = random_Functions[ramdom_Number]
-            print(caracter, end="")
+            password = password + str(random_Functions[ramdom_Number])
+        save(name,password)
     elif have_UpperCase == "y" and have_LowerCase == "y" and have_Nums == "y" and have_Symbols == "y":
+        password = ''
         for x in range(lenght):
             random_Functions = {
                 1: Is_Symbols(symbols),
@@ -67,9 +86,10 @@ def Custom_Passwords():
                 4: Is_LowerCase(lowerCase)
             }
             ramdom_Number = random.randint(1, 4)
-            caracter = random_Functions[ramdom_Number]
-            print(caracter, end="")
+            password = password + str(random_Functions[ramdom_Number])
+        save(name,password)
     elif have_UpperCase == "n" and have_LowerCase == "y" and have_Nums == "y" and have_Symbols == "y":
+        password = ''
         for x in range(lenght):
             random_Functions = {
                 1: Is_Symbols(symbols),
@@ -77,27 +97,35 @@ def Custom_Passwords():
                 3: Is_LowerCase(lowerCase)
             }
             ramdom_Number = random.randint(1, 3)
-            caracter = random_Functions[ramdom_Number]
-            print(caracter, end="")
+            password = password + str(random_Functions[ramdom_Number])
+        save(name,password)
     elif have_UpperCase == "n" and have_LowerCase == "n" and have_Nums == "y" and have_Symbols == "y":
+        password = ''
         for x in range(lenght):
             random_Functions = {
                 1: Is_Symbols(symbols),
                 2: Is_Nums(nums)
             }
             ramdom_Number = random.randint(1, 2)
-            caracter = random_Functions[ramdom_Number]
-            print(caracter, end="")
+            password = password + str(random_Functions[ramdom_Number])
+        save(name,password)
     elif have_UpperCase == "n" and have_LowerCase == "n" and have_Nums == "n" and have_Symbols == "y":
+        password = ''
         for x in range(lenght):
-            print(Is_Symbols(symbols), end="")
+            password = password + Is_Symbols(symbols)
+        save(name,password)
     elif have_UpperCase == "n" and have_LowerCase == "y" and have_Nums == "n" and have_Symbols == "n":
+        password = ''
         for x in range(lenght):
-            print(Is_LowerCase(lowerCase), end="")
+            password = password + Is_LowerCase(lowerCase)
+        save(name,password)
     elif have_UpperCase == "n" and have_LowerCase == "n" and have_Nums == "y" and have_Symbols == "n":
+        password = ''
         for x in range(lenght):
-            print(Is_Nums(nums), end="")
+            password = password + Is_Nums(nums)
+        save(name,password)
     elif have_UpperCase == "y" and have_LowerCase == "n" and have_Nums == "y" and have_Symbols == "y":
+        password = ''
         for x in range(lenght):
             random_Functions = {
                 1: Is_Symbols(symbols),
@@ -105,44 +133,59 @@ def Custom_Passwords():
                 3: Is_UpperCase(upperCase),
             }
             ramdom_Number = random.randint(1, 3)
-            caracter = random_Functions[ramdom_Number]
-            print(caracter, end="")
+            password = password + str(random_Functions[ramdom_Number])
+        save(name,password)
     elif have_UpperCase == "y" and have_LowerCase == "n" and have_Nums == "n" and have_Symbols == "y":
+        password = ''
         for x in range(lenght):
             random_Functions = {
                 1: Is_Symbols(symbols),
                 2: Is_UpperCase(upperCase),
             }
             ramdom_Number = random.randint(1, 2)
-            caracter = random_Functions[ramdom_Number]
-            print(caracter, end="")
+            password = password + str(random_Functions[ramdom_Number])
+        save(name,password)
     elif have_UpperCase == "y" and have_LowerCase == "n" and have_Nums == "y" and have_Symbols == "n":
+        password = ''
         for x in range(lenght):
             random_Functions = {
                 1: Is_Nums(nums),
                 2: Is_UpperCase(upperCase),
             }
             ramdom_Number = random.randint(1, 2)
-            caracter = random_Functions[ramdom_Number]
-            print(caracter, end="")
+            password = password + str(random_Functions[ramdom_Number])
+        save(name,password)
     elif have_UpperCase == "n" and have_LowerCase == "y" and have_Nums == "y" and have_Symbols == "n":
+        password = ''
         for x in range(lenght):
             random_Functions = {
                 1: Is_Nums(nums),
                 2: Is_LowerCase(lowerCase)
             }
             ramdom_Number = random.randint(1, 2)
-            caracter = random_Functions[ramdom_Number]
-            print(caracter, end="")
+            password = password + str(random_Functions[ramdom_Number])
+        save(name,password)
     elif have_UpperCase == "n" and have_LowerCase == "y" and have_Nums == "n" and have_Symbols == "y":
+        password = ''
         for x in range(lenght):
             random_Functions = {
                 1: Is_Symbols(symbols),
                 2: Is_LowerCase(lowerCase)
             }
             ramdom_Number = random.randint(1, 2)
-            caracter = random_Functions[ramdom_Number]
-            print(caracter, end="")
+            password = password + str(random_Functions[ramdom_Number])
+        save(name,password)
+    elif have_UpperCase == "y" and have_LowerCase == "y" and have_Nums == "n" and have_Symbols == "y":
+        password = ''
+        for x in range(lenght):
+            random_Functions = {
+                1: Is_Symbols(symbols),
+                2: Is_LowerCase(lowerCase),
+                3: Is_UpperCase(upperCase)
+            }
+            ramdom_Number = random.randint(1, 3)
+            password = password + str(random_Functions[ramdom_Number])
+        save(name,password)
     else :
         print("Falta programar")
 
@@ -165,17 +208,19 @@ def Menu(boolean):
 
 #Main program
 if __name__ == '__main__':
-
     upperCase = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
     lowerCase = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","q","p","q","r","s","t","u","v","w","x","y","z"]
     nums = ["0","1","2","3","4","5","6","7","8","9"]
     symbols = ["@","#","$","&","?","¿","+","!"]
     run_Program = True
+
     #Main loop
     while run_Program:
         choose = Menu(False)
         if choose == 1:
             lenght = int(input("¿Cuantos caracteres quieres que tenga tu contraseña?: "))
+            name = input("Dime el nombre para guardar la contraseña: ")
+            password = ''
             for x in range(lenght):
                 random_Functions = {
                     1: Is_Symbols(symbols),
@@ -184,8 +229,9 @@ if __name__ == '__main__':
                     4: Is_LowerCase(lowerCase)
                 }
                 ramdom_Number = random.randint(1, 4)
-                caracter = random_Functions[ramdom_Number]
-                print(caracter, end="")
+                password = password + str(random_Functions[ramdom_Number])
+            save(name,password)
+
         elif choose == 2:
             Custom_Passwords()
         else:
